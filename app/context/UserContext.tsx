@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
 
 interface UserContextType {
@@ -18,9 +18,8 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
-  const useParams = useSearchParams();
   useEffect(() => {
-    const token = localStorage.getItem("auth_token") || useParams.get("token");
+    const token = localStorage.getItem("auth_token");
     const userData = localStorage.getItem("user");
 
     if (token) {
