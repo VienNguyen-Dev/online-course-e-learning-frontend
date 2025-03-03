@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 23, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/middleware.ts"],"sourcesContent":["import { NextResponse } from \"next/server\";\r\nimport type { NextRequest } from \"next/server\";\r\n\r\nexport function middleware(request: NextRequest) {\r\n  const token = request.cookies.get(\"auth_cookies\");\r\n  if (!token) {\r\n    return NextResponse.redirect(new URL(\"/sign-in\", request.url));\r\n  }\r\n}\r\n\r\nexport const config = {\r\n  matcher: [\"/\", \"/courses/:path*\", \"/contact/:path*\", \"/about-us/:path*\", \"/pricing/:path*\"],\r\n};\r\n"],"names":[],"mappings":";;;;AAAA;AAAA;;AAGO,SAAS,WAAW,OAAoB;IAC7C,MAAM,QAAQ,QAAQ,OAAO,CAAC,GAAG,CAAC;IAClC,IAAI,CAAC,OAAO;QACV,OAAO,qLAAA,CAAA,eAAY,CAAC,QAAQ,CAAC,IAAI,IAAI,YAAY,QAAQ,GAAG;IAC9D;AACF;AAEO,MAAM,SAAS;IACpB,SAAS;QAAC;QAAK;QAAmB;QAAmB;QAAoB;KAAkB;AAC7F"}},
+    {"offset": {"line": 45, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}
