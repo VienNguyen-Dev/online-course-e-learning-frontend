@@ -1,3 +1,4 @@
+import AuthFormPage from "@/components/AuthForm";
 import AuthForm from "@/components/AuthForm";
 import { link } from "fs";
 import React from "react";
@@ -7,7 +8,7 @@ import React from "react";
 // 4. Send email success and have a link
 // 5. Open email and reset password
 const ResetPasswordPage = () => {
-  return <AuthForm title="Reset Password" description="Please enter your email address associated with your account. We will send you a link to reset your password." type="reset-password" />;
+  return <AuthFormPage title="Reset Password" description="Please enter your email address associated with your account. We will send you a link to reset your password." type="reset-password" />;
 };
 
 export default ResetPasswordPage;

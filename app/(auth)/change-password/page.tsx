@@ -1,3 +1,4 @@
+import AuthFormPage from "@/components/AuthForm";
 import AuthForm from "@/components/AuthForm";
 import React, { Suspense } from "react";
 // 1. Nagivate to reset password page when Click on fotgot password link
@@ -6,11 +7,7 @@ import React, { Suspense } from "react";
 // 4. Send email success and have a link
 // 5. Open email and reset password
 const ResetPasswordPage = () => {
-  return (
-    <Suspense>
-      <AuthForm title="Change Password" description="Please enter your new password to change password." type="change-password" />;
-    </Suspense>
-  );
+  return <AuthFormPage title="Change Password" description="Please enter your new password to change password." type="change-password" />;
 };
 
 export default ResetPasswordPage;

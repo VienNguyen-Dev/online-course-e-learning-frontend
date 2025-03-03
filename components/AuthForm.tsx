@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Form, FormControl, FormField, FormItem } from "./ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -286,5 +286,12 @@ const AuthForm = ({ type, title, description }: AuthFormType) => {
     </div>
   );
 };
+const AuthFormPage = ({ type, title, description }: AuthFormType) => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AuthForm type={type} title={title} description={description} />
+    </Suspense>
+  );
+};
 
-export default AuthForm;
+export default AuthFormPage;
