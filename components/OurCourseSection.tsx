@@ -4,7 +4,7 @@ import { headerContents } from "@/constants";
 import { CardCourse } from "./CardCourse";
 import HeaderSection from "./HeaderSection";
 import { courseDetails } from "@/lib/actions/course.action";
-import { ICourse } from "@/backend/models/Course.model";
+import { ICourse } from "@/app/type";
 
 const OurCourseSection = () => {
   const [courses, setCourses] = useState<ICourse[]>([] as ICourse[]);
