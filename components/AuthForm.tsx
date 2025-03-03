@@ -11,7 +11,7 @@ import { Checkbox } from "./ui/checkbox";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { authSchema } from "@/app/validation";
-import { BadgeCheck, Check, Loader2 } from "lucide-react";
+import { BadgeCheck, Loader2 } from "lucide-react";
 import { useUserContext } from "@/app/context/UserContext";
 
 interface AuthFormType {
@@ -47,25 +47,24 @@ const AuthForm = ({ type, title, description }: AuthFormType) => {
 
   // 2. Define a submit handler.
 
-  if (type === "sign-in") {
-    useEffect(() => {
-      const savedRememberMe = localStorage.getItem("remember_me") === "true";
-      const savedEmail = JSON.parse(localStorage.getItem("email") || '""');
-      const savedPassword = JSON.parse(localStorage.getItem("password") || '""');
+  useEffect(() => {
+    const savedRememberMe = localStorage.getItem("remember_me") === "true";
+    const savedEmail = JSON.parse(localStorage.getItem("email") || '""');
+    const savedPassword = JSON.parse(localStorage.getItem("password") || '""');
 
-      setIsCheckedRemember(savedRememberMe);
-      setEmail(savedEmail);
-      setPassword(savedPassword);
+    setIsCheckedRemember(savedRememberMe);
+    setEmail(savedEmail);
+    setPassword(savedPassword);
 
-      if (savedRememberMe) {
-        form.setValue("email", savedEmail, { shouldValidate: true });
-        form.setValue("password", savedPassword);
-      }
-    }, []);
-  }
+    if (savedRememberMe) {
+      form.setValue("email", savedEmail, { shouldValidate: true });
+      form.setValue("password", savedPassword);
+    }
+  }, []);
   async function onSubmit(values: z.infer<typeof authFormSchema>) {
     setIsLoading(true);
-    let data =
+    let data = {};
+    data =
       type === "change-password"
         ? {
             token,
