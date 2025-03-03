@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import CourseDetail from "@/components/CourseDetail";
 import CourseHeader from "@/components/HeaderSectionPage";
-import { ICourse } from "@/backend/models/Course.model";
+import { ICourse } from "../type";
 
 const CoursesPage = () => {
   const [courses, setCourses] = useState<ICourse[]>([] as ICourse[]);
