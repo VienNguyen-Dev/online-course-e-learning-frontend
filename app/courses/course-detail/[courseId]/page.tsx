@@ -1,5 +1,5 @@
 "use client";
-import { ICourse } from "@/backend/models/Course.model";
+import { ICourse } from "@/app/type";
 import CourseHeader from "@/components/HeaderSectionPage";
 import StepCard from "@/components/StepCard";
 import Image from "next/image";
