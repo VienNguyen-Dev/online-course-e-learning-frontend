@@ -2,7 +2,7 @@
 import React from "react";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
-import { ICurriculum } from "@/backend/models/Course.model";
+import { ICurriculum } from "@/app/type";
 
 interface CourseDetailProps {
   id: string;
