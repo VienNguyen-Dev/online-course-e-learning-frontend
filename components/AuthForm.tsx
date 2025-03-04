@@ -1,6 +1,7 @@
 "use client";
 import React, { Suspense, useEffect, useState } from "react";
 import { Form, FormControl, FormField, FormItem } from "./ui/form";
+import dotenv from "dotenv";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -13,6 +14,7 @@ import { toast } from "sonner";
 import { authSchema } from "@/app/validation";
 import { BadgeCheck, Loader2 } from "lucide-react";
 import { useUserContext } from "@/app/context/UserContext";
+dotenv.config();
 
 interface AuthFormType {
   type: "sign-up" | "sign-in" | "reset-password" | "change-password";
@@ -46,7 +48,6 @@ const AuthForm = ({ type, title, description }: AuthFormType) => {
   const [password, setPassword] = useState("");
 
   // 2. Define a submit handler.
-
   useEffect(() => {
     const savedRememberMe = localStorage.getItem("remember_me") === "true";
     const savedEmail = JSON.parse(localStorage.getItem("email") || '""');
@@ -72,7 +73,8 @@ const AuthForm = ({ type, title, description }: AuthFormType) => {
             passwordConfirm: values.passwordConfirm,
           }
         : values;
-    const response = await fetch(`http://localhost:5500/api/v1/auth/${type}`, {
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/${type}`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -86,11 +88,11 @@ const AuthForm = ({ type, title, description }: AuthFormType) => {
         if (JSON.stringify(body.data.user.rememberMe) && type === "sign-in") {
           localStorage.setItem("email", JSON.stringify(body.data.user.email));
           localStorage.setItem("password", JSON.stringify(body.data.user.password));
-          localStorage.setItem("auth_token", body.data.token);
+          localStorage.setItem("auth_token", JSON.stringify(body.data.token));
           localStorage.setItem("remember_me", JSON.stringify(isCheckedRemember));
           localStorage.setItem("user", JSON.stringify(body.data.user));
         } else {
-          sessionStorage.setItem("auth_token", body.data.token);
+          sessionStorage.setItem("auth_token", JSON.stringify(body.data.token));
           sessionStorage.setItem("user", JSON.stringify(body.data.user));
         }
         const token = localStorage.getItem("auth_token");

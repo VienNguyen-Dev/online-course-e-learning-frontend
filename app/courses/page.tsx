@@ -3,13 +3,14 @@ import React, { useEffect, useState } from "react";
 import CourseDetail from "@/components/CourseDetail";
 import CourseHeader from "@/components/HeaderSectionPage";
 import { ICourse } from "../type";
+import { config } from "dotenv";
 
 const CoursesPage = () => {
   const [courses, setCourses] = useState<ICourse[]>([] as ICourse[]);
 
   useEffect(() => {
     const fetchCourses = async () => {
-      const response = await fetch("http://localhost:5500/api/v1/courses", {
+      const response = await fetch(`${process.env.BACKEND_URL}/api/v1/courses`, {
         method: "GET",
       });
       const data = await response.json();

@@ -1,6 +1,5 @@
 import AuthFormPage from "@/components/AuthForm";
-import AuthForm from "@/components/AuthForm";
-import { link } from "fs";
+
 import React from "react";
 // 1. Nagivate to reset password page when Click on fotgot password link
 // 2. Using resned to send a email to registed email address
