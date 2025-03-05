@@ -75,6 +75,7 @@ const AuthForm = ({ type, title, description }: AuthFormType) => {
         : values;
     //   ${process.env.NEXT_PUBLIC_BACKEND_URL}
     const response = await fetch(`https://online-course-e-learning-backend.vercel.app/api/v1/auth/${type}`, {
+      mode: "no-cors",
       method: "POST",
       body: JSON.stringify(data),
       headers: {
